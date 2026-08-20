@@ -430,6 +430,18 @@
     "ENABLE_EXTRANONCE": "Enable Extranonce Subscribe",
     "STRATUM_TLS": "Encrypted connection (TLS)"
   },
+  "POWER_CAL": {
+    "TITLE": "Power Calibration",
+    "HINT": "If the reported power consumption differs from a wattmeter reading (e.g. miscalibrated INA260 sensor), calibrate it here. Current and efficiency are corrected as well.",
+    "CURRENT_POWER": "Reported power",
+    "REFRESH": "Refresh",
+    "MEASURED_POWER": "Wattmeter reading",
+    "MEASURED_POWER_HELP": "Enter the actual power measured with a wattmeter, then click Calibrate to compute the calibration factor.",
+    "CALIBRATE": "Calibrate",
+    "FACTOR": "Calibration factor",
+    "FACTOR_HELP": "Multiplier applied to the measured power and current (1.000 = no correction, allowed range 0.500–2.000). Save the settings to apply.",
+    "RESET": "Reset"
+  },
   "FAN": {
     "TITLE": "Fan Controller",
     "PRIMARY_CONTROLLER": "ASICs",

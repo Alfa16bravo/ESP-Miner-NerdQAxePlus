@@ -430,6 +430,18 @@
     "ENABLE_EXTRANONCE": "Extranonce Subscribe aktivieren",
     "STRATUM_TLS": "Verschlüsselte Verbindung (TLS)"
   },
+  "POWER_CAL": {
+    "TITLE": "Leistungskalibrierung",
+    "HINT": "Wenn die angezeigte Leistungsaufnahme von der Messung eines Leistungsmessgeräts abweicht (z. B. falsch kalibrierter INA260-Sensor), kann sie hier kalibriert werden. Strom und Effizienz werden ebenfalls korrigiert.",
+    "CURRENT_POWER": "Angezeigte Leistung",
+    "REFRESH": "Aktualisieren",
+    "MEASURED_POWER": "Messwert (Leistungsmesser)",
+    "MEASURED_POWER_HELP": "Tatsächliche Leistung vom Leistungsmessgerät eingeben und auf Kalibrieren klicken, um den Kalibrierungsfaktor zu berechnen.",
+    "CALIBRATE": "Kalibrieren",
+    "FACTOR": "Kalibrierungsfaktor",
+    "FACTOR_HELP": "Multiplikator für gemessene Leistung und Strom (1.000 = keine Korrektur, zulässiger Bereich 0.500–2.000). Zum Übernehmen Einstellungen speichern.",
+    "RESET": "Zurücksetzen"
+  },
   "FAN": {
     "TITLE": "Lüftersteuerung",
     "PRIMARY_CONTROLLER": "ASICs",

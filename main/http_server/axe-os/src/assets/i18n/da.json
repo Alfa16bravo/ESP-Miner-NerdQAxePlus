@@ -430,6 +430,18 @@
     "ENABLE_EXTRANONCE": "Aktivér Extranonce Subscribe",
     "STRATUM_TLS": "Krypteret forbindelse (TLS)"
   },
+  "POWER_CAL": {
+    "TITLE": "Effektkalibrering",
+    "HINT": "Hvis det viste effektforbrug afviger fra en wattmåler-måling (f.eks. fejlkalibreret INA260-sensor), kan det kalibreres her. Strøm og effektivitet korrigeres også.",
+    "CURRENT_POWER": "Vist effekt",
+    "REFRESH": "Opdater",
+    "MEASURED_POWER": "Wattmåler-aflæsning",
+    "MEASURED_POWER_HELP": "Indtast den faktiske effekt målt med en wattmåler, og klik på Kalibrer for at beregne kalibreringsfaktoren.",
+    "CALIBRATE": "Kalibrer",
+    "FACTOR": "Kalibreringsfaktor",
+    "FACTOR_HELP": "Multiplikator anvendt på målt effekt og strøm (1.000 = ingen korrektion, tilladt område 0.500–2.000). Gem indstillingerne for at anvende.",
+    "RESET": "Nulstil"
+  },
   "FAN": {
     "TITLE": "Ventilatorstyring",
     "PRIMARY_CONTROLLER": "ASIC'er",

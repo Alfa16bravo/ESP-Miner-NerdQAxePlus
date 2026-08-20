@@ -430,6 +430,18 @@
     "ENABLE_EXTRANONCE": "Włącz subskrypcję Extranonce",
     "STRATUM_TLS": "Zaszyfrowane połączenie (TLS)"
   },
+  "POWER_CAL": {
+    "TITLE": "Kalibracja mocy",
+    "HINT": "Jeśli wyświetlany pobór mocy różni się od pomiaru watomierzem (np. źle skalibrowany czujnik INA260), skalibruj go tutaj. Prąd i wydajność również są korygowane.",
+    "CURRENT_POWER": "Wyświetlana moc",
+    "REFRESH": "Odśwież",
+    "MEASURED_POWER": "Odczyt watomierza",
+    "MEASURED_POWER_HELP": "Wprowadź rzeczywistą moc zmierzoną watomierzem, a następnie kliknij Kalibruj, aby obliczyć współczynnik kalibracji.",
+    "CALIBRATE": "Kalibruj",
+    "FACTOR": "Współczynnik kalibracji",
+    "FACTOR_HELP": "Mnożnik stosowany do zmierzonej mocy i prądu (1.000 = brak korekty, dozwolony zakres 0.500–2.000). Zapisz ustawienia, aby zastosować.",
+    "RESET": "Resetuj"
+  },
   "FAN": {
     "TITLE": "Kontroler wentylatora",
     "PRIMARY_CONTROLLER": "ASIC",

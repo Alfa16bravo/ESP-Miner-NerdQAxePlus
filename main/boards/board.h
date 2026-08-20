@@ -102,6 +102,10 @@ public:
     float m_minCurrentA = 0.0f;
     float m_maxCurrentA = 8.0f; // default for small devices
 
+    // user calibration factor applied to input power/current readings
+    // (compensates miscalibrated power sensors, e.g. INA260)
+    float m_powerCalFactor = 1.0f;
+
     int m_numFans;
 
     bool m_shutdown = false;
@@ -293,6 +297,11 @@ public:
     float getMaxCurrentA()
         const {
         return m_maxCurrentA;
+    }
+
+    float getPowerCalFactor()
+        const {
+        return m_powerCalFactor;
     }
 
     float getVrMaxTemp()

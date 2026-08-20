@@ -44,6 +44,10 @@ void Board::loadSettings()
     m_flipScreen = Config::isFlipScreenEnabled(m_flipScreen);
     m_vrFrequency = Config::getVrFrequency(m_defaultVrFrequency);
 
+    // power calibration factor, stored in per-mille, sane range 0.500 … 2.000
+    m_powerCalFactor = (float) Config::getPowerCalFactor1000() / 1000.0f;
+    m_powerCalFactor = std::min(std::max(m_powerCalFactor, 0.5f), 2.0f);
+
     for (int ch = 0; ch < 2; ch++) {
         m_fanMode[ch] = Config::getFanMode(ch, m_fanMode[ch]);
         m_pidSettings[ch].targetTemp = Config::getFanPidTargetTemp(ch, m_pidSettings[ch].targetTemp);
@@ -57,6 +61,7 @@ void Board::loadSettings()
     ESP_LOGI(TAG, "ASIC job interval: %dms", m_asicJobIntervalMs);
     ESP_LOGI(TAG, "invert fan polarity: %s", m_fanInvertPolarity ? "true" : "false");
     ESP_LOGI(TAG, "fan speed: %d%%", (int) m_fanPerc);
+    ESP_LOGI(TAG, "power calibration factor: %.3f", m_powerCalFactor);
 }
 
 bool Board::initBoard() {

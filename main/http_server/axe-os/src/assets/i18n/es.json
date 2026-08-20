@@ -430,6 +430,18 @@
     "ENABLE_EXTRANONCE": "Habilitar Suscripción Extranonce",
     "STRATUM_TLS": "Conexión cifrada (TLS)"
   },
+  "POWER_CAL": {
+    "TITLE": "Calibración de potencia",
+    "HINT": "Si el consumo mostrado difiere de la medición de un vatímetro (por ejemplo, sensor INA260 mal calibrado), calíbrelo aquí. La corriente y la eficiencia también se corrigen.",
+    "CURRENT_POWER": "Potencia mostrada",
+    "REFRESH": "Actualizar",
+    "MEASURED_POWER": "Lectura del vatímetro",
+    "MEASURED_POWER_HELP": "Introduzca la potencia real medida con un vatímetro y pulse Calibrar para calcular el factor de calibración.",
+    "CALIBRATE": "Calibrar",
+    "FACTOR": "Factor de calibración",
+    "FACTOR_HELP": "Multiplicador aplicado a la potencia y corriente medidas (1.000 = sin corrección, rango permitido 0.500–2.000). Guarde los ajustes para aplicar.",
+    "RESET": "Restablecer"
+  },
   "FAN": {
     "TITLE": "Controlador de Ventilador",
     "PRIMARY_CONTROLLER": "ASICs",

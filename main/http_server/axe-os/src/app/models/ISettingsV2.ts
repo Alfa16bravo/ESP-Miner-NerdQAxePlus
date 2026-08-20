@@ -67,6 +67,9 @@ export interface ISettingsV2 {
     invertFanPolarity: number;
     pidUseMax: boolean;
 
+    // Power calibration (1.0 = uncalibrated)
+    powerCalFactor?: number;
+
     // Network
     hostname: string;
     ssid: string;

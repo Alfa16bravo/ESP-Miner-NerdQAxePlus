@@ -1,3 +1,5 @@
+#include <math.h>
+
 #include "esp_ota_ops.h"
 #include "esp_http_server.h"
 #include "esp_log.h"
@@ -112,6 +114,7 @@ esp_err_t GET_system_info(httpd_req_t *req)
     doc["minVoltage"]         = board->getMinVin();
     doc["current"]            = POWER_MANAGEMENT_MODULE.getCurrent();           // mA (raw)
     doc["currentA"]           = POWER_MANAGEMENT_MODULE.getCurrent() / 1000.0f; // A (UI)
+    doc["powerCalFactor"]     = board->getPowerCalFactor();
     doc["minCurrentA"]        = board->getMinCurrentA(); // A
     doc["maxCurrentA"]        = board->getMaxCurrentA(); // A
     doc["temp"]               = POWER_MANAGEMENT_MODULE.getChipTempMax();
@@ -370,6 +373,12 @@ esp_err_t PATCH_update_settings(httpd_req_t *req)
         Config::setVrFrequency(doc["vrFrequency"].as<uint32_t>());
     }
 #endif
+    if (doc["powerCalFactor"].is<float>()) {
+        float factor = doc["powerCalFactor"].as<float>();
+        if (factor >= 0.5f && factor <= 2.0f) {
+            Config::setPowerCalFactor1000((uint16_t) roundf(factor * 1000.0f));
+        }
+    }
 
     // Per-channel fan settings: fans[0] maps to ch0 NVS keys, fans[1] to ch1 NVS keys
     if (doc["fans"].is<JsonArray>()) {

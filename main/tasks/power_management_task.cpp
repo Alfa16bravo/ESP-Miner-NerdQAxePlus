@@ -177,6 +177,13 @@ void PowerManagementTask::readAndPublishPowerTelemetry()
     float vin = m_board->getVin();
     float iin = m_board->getIin();
     float pin = m_board->getPin();
+
+    // apply user power calibration (wattmeter reference) to input-side
+    // readings; vin is left untouched so iin stays consistent with pin
+    float cal = m_board->getPowerCalFactor();
+    iin *= cal;
+    pin *= cal;
+
     float pout = m_board->getPout();
     float vout = m_board->getVout();
     float iout = m_board->getIout();

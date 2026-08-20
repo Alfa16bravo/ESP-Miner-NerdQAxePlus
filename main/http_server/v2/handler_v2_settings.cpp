@@ -142,6 +142,9 @@ esp_err_t GET_V2_settings(httpd_req_t *req)
         }
     }
     doc["invertFanPolarity"] = board->isInvertFanPolarityEnabled() ? 1 : 0;
+
+    // --- power calibration ---
+    doc["powerCalFactor"] = board->getPowerCalFactor();
 #if defined(NERDAXE) || defined(NERDAXEGAMMA)
     doc["pidUseMax"]         = Config::isFanPidUseMax();
 #endif
@@ -252,6 +255,12 @@ esp_err_t PATCH_V2_settings(httpd_req_t *req)
     }
     if (doc["invertFanPolarity"].is<bool>()) {
         Config::setFanPolarity(doc["invertFanPolarity"].as<bool>());
+    }
+    if (doc["powerCalFactor"].is<float>()) {
+        float factor = doc["powerCalFactor"].as<float>();
+        if (factor >= 0.5f && factor <= 2.0f) {
+            Config::setPowerCalFactor1000((uint16_t) roundf(factor * 1000.0f));
+        }
     }
 #if defined(NERDAXE) || defined(NERDAXEGAMMA)
     if (doc["pidUseMax"].is<bool>()) {

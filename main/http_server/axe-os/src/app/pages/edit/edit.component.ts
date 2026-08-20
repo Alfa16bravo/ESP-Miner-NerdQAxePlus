@@ -69,6 +69,10 @@ export class EditComponent implements OnInit {
   public hasCanExtension = false;
   private pendingTotp: string | undefined;
 
+  // Power calibration
+  public currentPower: number | null = null;
+  private appliedPowerCalFactor: number = 1;
+
   private asicFrequencyValues: number[] = [];
   private asicVoltageValues: number[] = [];
 
@@ -256,6 +260,9 @@ export class EditComponent implements OnInit {
           ]],
           otpEnabled: [info.otp],
 
+          powerCalFactor: [info.powerCalFactor ?? 1, [Validators.min(0.5), Validators.max(2), Validators.required]],
+          measuredPowerW: [null],
+
           fan1Mode: [fan1cfg?.mode ?? 3, [Validators.required]],
           fan1ManualSpeed: [fan1cfg?.manualSpeed ?? 100, [Validators.min(0), Validators.max(100), Validators.required]],
           fan1OverheatTemp: [fan1cfg?.overheatTemp ?? 70, [Validators.min(40), Validators.max(90), Validators.required]],
@@ -279,7 +286,45 @@ export class EditComponent implements OnInit {
         this.updatePIDFieldStates();
         this.updateFan1FieldStates();
 
+        this.appliedPowerCalFactor = info.powerCalFactor ?? 1;
+        this.refreshPower();
+
       });
+  }
+
+  public refreshPower(): void {
+    this.systemService.getInfo(0, 0, this.uri).subscribe({
+      next: (info) => this.currentPower = info.power,
+      error: () => this.currentPower = null,
+    });
+  }
+
+  public canCalibratePower(): boolean {
+    const measured = this.form?.get('measuredPowerW')?.value;
+    return this.currentPower != null && this.currentPower > 0 && measured > 0;
+  }
+
+  // Compute the calibration factor from the wattmeter reading:
+  // remove the currently applied factor to get the raw sensor value,
+  // then scale so the displayed power matches the wattmeter.
+  public applyPowerCalibration(): void {
+    const measured = this.form.get('measuredPowerW')?.value;
+    if (!measured || this.currentPower == null || this.currentPower <= 0) {
+      return;
+    }
+    const rawPower = this.currentPower / (this.appliedPowerCalFactor || 1);
+    let factor = measured / rawPower;
+    factor = Math.round(factor * 1000) / 1000;
+    factor = Math.min(2, Math.max(0.5, factor));
+    this.form.get('powerCalFactor')?.setValue(factor);
+    this.form.get('powerCalFactor')?.markAsDirty();
+    this.form.markAsDirty();
+  }
+
+  public resetPowerCalibration(): void {
+    this.form.get('powerCalFactor')?.setValue(1);
+    this.form.get('powerCalFactor')?.markAsDirty();
+    this.form.markAsDirty();
   }
 
   private updatePIDFieldStates(): void {
@@ -430,6 +475,8 @@ export class EditComponent implements OnInit {
       fans,
       invertFanPolarity: !!f.invertFanPolarity,
       pidUseMax: !!f.pidUseMax,
+      // Power calibration
+      powerCalFactor: f.powerCalFactor,
       // Mempool
       mempoolCustom: !!f.customMempoolEnabled,
       mempoolUrl: f.customMempoolEnabled ? f.mempoolUrl : '',
@@ -636,6 +683,7 @@ export class EditComponent implements OnInit {
       )
       .subscribe({
         next: () => {
+          this.appliedPowerCalFactor = this.form.get('powerCalFactor')?.value ?? this.appliedPowerCalFactor;
           this.toastrService.success('Success!', 'Saved.');
         },
         error: (err: HttpErrorResponse) => {

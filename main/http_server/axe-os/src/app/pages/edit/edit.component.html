@@ -395,6 +395,59 @@
             </nb-card-body>
         </nb-card>
         <nb-card>
+            <nb-card-header>{{ 'POWER_CAL.TITLE' | translate }}</nb-card-header>
+            <nb-card-body>
+                <div class="form-row">
+                    <label class="form-label"></label>
+                    <div class="form-control-wrapper">
+                        <small>{{ 'POWER_CAL.HINT' | translate }}</small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label class="form-label">{{ 'POWER_CAL.CURRENT_POWER' | translate }}:</label>
+                    <div class="form-control-wrapper">
+                        <span style="display: inline-flex; align-items: center; gap: 8px;">
+                            <b>{{ currentPower !== null ? (currentPower | number:'1.1-1') + ' W' : '—' }}</b>
+                            <button nbButton size="small" status="basic" type="button" (click)="refreshPower()">
+                                {{ 'POWER_CAL.REFRESH' | translate }}
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="measuredPowerW" class="form-label">{{ 'POWER_CAL.MEASURED_POWER' | translate }}:</label>
+                    <div class="form-control-wrapper">
+                        <span style="display: inline-flex; align-items: center; gap: 8px;">
+                            <input nbInput id="measuredPowerW" formControlName="measuredPowerW" type="number" min="1"
+                                step="0.1" style="width: 100px;" />
+                            <span>W</span>
+                            <button nbButton size="small" status="primary" type="button"
+                                (click)="applyPowerCalibration()" [disabled]="!canCalibratePower()">
+                                {{ 'POWER_CAL.CALIBRATE' | translate }}
+                            </button>
+                        </span>
+                        <br />
+                        <small>{{ 'POWER_CAL.MEASURED_POWER_HELP' | translate }}</small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="powerCalFactor" class="form-label">{{ 'POWER_CAL.FACTOR' | translate }}:</label>
+                    <div class="form-control-wrapper">
+                        <span style="display: inline-flex; align-items: center; gap: 8px;">
+                            <input nbInput id="powerCalFactor" formControlName="powerCalFactor" type="number" min="0.5"
+                                max="2" step="0.001" style="width: 100px;" />
+                            <button nbButton size="small" status="basic" type="button"
+                                (click)="resetPowerCalibration()">
+                                {{ 'POWER_CAL.RESET' | translate }}
+                            </button>
+                        </span>
+                        <br />
+                        <small>{{ 'POWER_CAL.FACTOR_HELP' | translate }}</small>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+        <nb-card>
             <nb-card-header>{{ 'FAN.TITLE' | translate }}</nb-card-header>
             <nb-card-body>
                 <div>

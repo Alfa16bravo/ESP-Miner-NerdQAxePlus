@@ -59,6 +59,20 @@ bitaxetool --config ./config.cvs --firmware esp-miner-factory-NERDQAXEPLUS-v1.0.
 ```
 
 
+## Power Calibration
+
+On some units the power measurement sensor (INA260 on NerdAxe variants, buck converter telemetry on NerdQAxe variants) is off by a significant margin. For example a NerdQAxe++ can report 120 W while an external DC power meter shows only 90 W. Since current, power and efficiency (J/TH) are all derived from this reading, everything shown on the dashboard is skewed.
+
+This fork adds a **Power Calibration** card on the settings page that lets you correct the reading against a reference power meter:
+
+1. Let the miner hash for a few minutes so it reaches a stable operating point.
+2. Open **Settings → Power Calibration** and click **Refresh** to get the currently reported power.
+3. Read the actual consumption on your power meter (an inline DC meter between the PSU and the barrel jack is the most accurate reference since it measures the same node as the internal sensor; a wall meter also works but includes PSU losses) and enter it in **Wattmeter reading**.
+4. Click **Calibrate** — the calibration factor is computed automatically.
+5. Save the settings. The correction is applied immediately, without reboot.
+
+The factor (allowed range 0.500–2.000, `1.000` = no correction) is a simple multiplier applied to the measured input power and current; the input voltage is left untouched so `P = U × I` stays consistent. It is stored in NVS (key `power_cal`) and applied centrally, so the display, web dashboard, API (`powerCalFactor` field in `/api/system` and `/api/v2/settings`), InfluxDB export and CAN telemetry are all corrected. **Reset** restores the factor to `1.000`.
+
 ## How to build firmware
 
 ### Using Docker

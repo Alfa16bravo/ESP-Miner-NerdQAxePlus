@@ -430,6 +430,18 @@
     "ENABLE_EXTRANONCE": "启用 Extranonce 订阅",
     "STRATUM_TLS": "加密连接（TLS）"
   },
+  "POWER_CAL": {
+    "TITLE": "功率校准",
+    "HINT": "如果显示的功耗与功率计的测量值不符（例如 INA260 传感器校准不准），可在此进行校准。电流和效率也会随之修正。",
+    "CURRENT_POWER": "显示功率",
+    "REFRESH": "刷新",
+    "MEASURED_POWER": "功率计读数",
+    "MEASURED_POWER_HELP": "输入功率计实际测得的功率，然后点击“校准”以计算校准系数。",
+    "CALIBRATE": "校准",
+    "FACTOR": "校准系数",
+    "FACTOR_HELP": "应用于测量功率和电流的乘数（1.000 = 无校正，允许范围 0.500–2.000）。保存设置后生效。",
+    "RESET": "重置"
+  },
   "FAN": {
     "TITLE": "风扇控制",
     "PRIMARY_CONTROLLER": "ASIC",

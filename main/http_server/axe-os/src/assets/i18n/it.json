@@ -430,6 +430,18 @@
     "ENABLE_EXTRANONCE": "Abilita sottoscrizione Extranonce",
     "STRATUM_TLS": "Connessione crittografata (TLS)"
   },
+  "POWER_CAL": {
+    "TITLE": "Calibrazione della potenza",
+    "HINT": "Se il consumo indicato differisce dalla misura di un wattmetro (ad es. sensore INA260 mal calibrato), calibralo qui. Anche corrente ed efficienza vengono corrette.",
+    "CURRENT_POWER": "Potenza indicata",
+    "REFRESH": "Aggiorna",
+    "MEASURED_POWER": "Lettura del wattmetro",
+    "MEASURED_POWER_HELP": "Inserisci la potenza reale misurata con un wattmetro, poi fai clic su Calibra per calcolare il fattore di calibrazione.",
+    "CALIBRATE": "Calibra",
+    "FACTOR": "Fattore di calibrazione",
+    "FACTOR_HELP": "Moltiplicatore applicato a potenza e corrente misurate (1.000 = nessuna correzione, intervallo consentito 0.500–2.000). Salva le impostazioni per applicare.",
+    "RESET": "Ripristina"
+  },
   "FAN": {
     "TITLE": "Controllore ventola",
     "PRIMARY_CONTROLLER": "ASIC",

@@ -79,6 +79,9 @@
 
 #define NVS_CONFIG_VR_FREQUENCY "vr_frequency"
 
+// power measurement calibration factor, stored in per-mille (1000 = 1.000)
+#define NVS_CONFIG_POWER_CAL_FACTOR "power_cal"
+
 // device global stats
 #define NVS_TOTAL_FOUND_BLOCKS "totalblocks"
 #define NVS_CONFIG_BEST_DIFF "bestdiff"
@@ -275,6 +278,10 @@ namespace Config {
     // Fan PID: use max(ASIC, VReg) as input instead of ASIC only
     inline bool isFanPidUseMax() { return cfgGetU16(NVS_CONFIG_FAN_PID_USE_MAX, 1) != 0; }
     inline void setFanPidUseMax(bool v) { cfgSetU16(NVS_CONFIG_FAN_PID_USE_MAX, v ? 1 : 0); }
+
+    // Power measurement calibration factor in per-mille (1000 = 1.000)
+    inline uint16_t getPowerCalFactor1000() { return cfgGetU16(NVS_CONFIG_POWER_CAL_FACTOR, 1000); }
+    inline void setPowerCalFactor1000(uint16_t value) { cfgSetU16(NVS_CONFIG_POWER_CAL_FACTOR, value); }
 
     // ---- uint64_t Getters ----
     uint64_t getBestDiff();

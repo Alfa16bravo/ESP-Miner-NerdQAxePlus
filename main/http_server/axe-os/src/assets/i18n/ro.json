@@ -430,6 +430,18 @@
     "ENABLE_EXTRANONCE": "Activează abonare Extranonce",
     "STRATUM_TLS": "Conexiune criptată (TLS)"
   },
+  "POWER_CAL": {
+    "TITLE": "Calibrarea puterii",
+    "HINT": "Dacă consumul afișat diferă de măsurătoarea unui wattmetru (de ex. senzor INA260 calibrat greșit), calibrați-l aici. Curentul și eficiența sunt de asemenea corectate.",
+    "CURRENT_POWER": "Putere afișată",
+    "REFRESH": "Actualizează",
+    "MEASURED_POWER": "Citirea wattmetrului",
+    "MEASURED_POWER_HELP": "Introduceți puterea reală măsurată cu un wattmetru, apoi apăsați Calibrează pentru a calcula factorul de calibrare.",
+    "CALIBRATE": "Calibrează",
+    "FACTOR": "Factor de calibrare",
+    "FACTOR_HELP": "Multiplicator aplicat puterii și curentului măsurate (1.000 = nicio corecție, interval permis 0.500–2.000). Salvați setările pentru a aplica.",
+    "RESET": "Resetează"
+  },
   "FAN": {
     "TITLE": "Control ventilator",
     "PRIMARY_CONTROLLER": "ASIC",
